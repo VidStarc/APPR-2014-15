@@ -1,5 +1,6 @@
 # Analiza podatkov s programom R, 2014/15
 
+Avtor: Vid Starc
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
 ## Tematika
