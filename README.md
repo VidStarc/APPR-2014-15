@@ -2,12 +2,11 @@
 
 Avtor: Vid Starc
 Mentor: Janoš Vidali
+Naslov projekta: Število živine
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
 ## Tematika
-
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+Število živine v Sloveniji in sicer število goveda, prašičev in perutnine v različnih letih, razdeljeno na vzhodno in zahodno Slovenijo, ter število goveda in prašičev po različnih državah Evrope.
 
 ## Program
 
