@@ -7,7 +7,9 @@ Naslov projekta: Število živine
 =======
 
 ## Tematika
-Število živine v Sloveniji in sicer število goveda, prašičev in perutnine v različnih letih, razdeljeno na vzhodno in zahodno Slovenijo, ter število goveda in prašičev po različnih državah Evrope.
+Število živine v Sloveniji in sicer število goveda in prašičev v različnih letih, razdeljeno na vzhodno in zahodno Slovenijo, ter število goveda in prašičev po različnih državah Evrope bo moja tema za projekt pri predmetu Analiza podatkov s programom R. Poskušal bom primerjati število omenjenih vrst živin v Sloveniji s tistim v Evropi in pri tem uvedel tudi urejenostno spremenlivko, glede na to ali je število v SLoveniji primerljivo s tistim v drugih dražavah. Podatke bom uvozil iz spletne strani SURS in spletne strani Eurostat, z analiziranjem le-teh pa bom ugotovil ali se lahko SLovenija na tem področju primerja z drugimi državami v Evropi.
+
+Namen projekta je podrobnejša analiza s programom R, spoznavanje različnih metod analiziranja na konkretnem primeru.
 
 ## Program
 
