@@ -25,6 +25,10 @@ viri so v mapi `podatki/`. Slike, ki jih program naredi, se shranijo v mapo
 `slike/`. Zemljevidi v obliki SHP, ki jih program pobere, se shranijo v mapo
 `zemljevid/`.
 
+stevilo.goveda<-read.csv2("stevilo-goveda.csv",skip=2, na.strings="-",fileEncoding="Windows-1250",col.names=c("ŠTEVILO GOVEDA","",paste("leto",2007:2013)))
+
+stevilo.prasicev<-read.csv2("stevilo-prasicev.csv",skip=2, na.strings=" ",fileEncoding="Windows-1250",col.names=c("ŠTEVILO PRAŠIČEV"," ",paste("leto",2007:2013)))
+
 ## Poročilo
 Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število goveda in prašičev v različnih letih. Podatki so razdeljeni na vzhodno in zahodno Slovenijo. Poleg tega pa bom to število primerjal z številom goveda in prašičev po različnih državah Evrope. Pofatke bom črpal iz statističnega urada republike Slovenije in iz uradne spletne strani Eurostat.
 
