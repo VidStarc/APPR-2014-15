@@ -2,7 +2,7 @@
 
 Avtor: Vid Starc
 
-Mentor: Janoš Vidali
+Mentor: dr.Janoš Vidali
 Naslov projekta: Število živine
 =======
 

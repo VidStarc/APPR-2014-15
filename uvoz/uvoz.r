@@ -1,16 +1,20 @@
 # 2. faza: Uvoz podatkov
 
-# Funkcija, ki uvozi podatke iz datoteke druzine.csv
-uvoziDruzine <- function() {
-  return(read.table("podatki/druzine.csv", sep = ";", as.is = TRUE,
-                      row.names = 1,
-                      col.names = c("obcina", "en", "dva", "tri", "stiri"),
-                      fileEncoding = "Windows-1250"))
+#funkcija, ki uvozi podatke iz datoteke stevilo-goveda.csv
+uvozistevilo<-function(){
+  setwd("G:/VID/fmf/anppr/project/APPR-2014-15/uvoz")
+  d<-dir()
+  z <- grep("\\.csv$", d)
+  return(read.csv2("stevilo-goveda.csv", skip=2,as.is = TRUE,na.strings="-",
+          col.names=c("ŠTEVILO GOVEDA","",paste("leto",2007:2013),"Povprečje EU"),
+          fileEncoding = "Windows-1250"))
 }
+# Zapišimo podatke v razpredelnico stevilo goveda.
+cat("Uvažam podatke o stevilu goveda...razpredelnica stevilo.goveda\n\n")
+stevilo.goveda<-uvozistevilo()
+stevilo.goveda$stevilo.goveda[,3:10] <- as.numeric(stevilo.goveda$stevilo.goveda[,3:10])
 
-# Zapišimo podatke v razpredelnico druzine.
-cat("Uvažam podatke o družinah...\n")
-druzine <- uvoziDruzine()
+
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
