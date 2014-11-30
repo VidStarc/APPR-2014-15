@@ -37,6 +37,16 @@ uvozi2<-function(){
 cat("Uvažam podatke o stevilu prasicev...razpredelnica stevilo.prasicev\n\n")
 stevilo.prasicev<-uvozi2()
 
+# Funkcija, ki uvozi podatke iz spletne strani
+# Ker imamo <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> potem nam ni potrebno podati parametra encoding
+uvozi3<-function(){
+       naslov="http://appsso.eurostat.ec.europa.eu/nui/submitViewTableAction.do"
+       doc<-htmlTreeParse(naslov, encoding = "UTF-8", useInternal = TRUE)
+   }
+# Zapišimo podatke v razpredelnico .
+cat("Uvažam podatke o stevilu pracicev v državah v Evropi...razpredelnica stevilo-prasicev\n\n")
+
+
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
 # datoteko, tukaj pa bi klicali tiste, ki jih potrebujemo v
