@@ -1,24 +1,29 @@
 # 2. faza: Uvoz podatkov
 
 #funkcija, ki uvozi podatke iz datoteke stevilo-goveda.csv
-uvozistevilo<-function(){
+uvozi1<-function(){
   return(read.csv2("podatki/stevilo-goveda.csv", skip=2,nrows=69,na.strings="-",
-          col.names=c("vrste goveda",paste("leto",2007:2013),"Povprečje EU"),
+          col.names=c("vrste goveda",paste("leto",2007:2013),"Povprečje EU","ocena"),
           fileEncoding = "Windows-1250"))
 }
 # Zapišimo podatke v razpredelnico stevilo goveda.
 cat("Uvažam podatke o stevilu goveda...razpredelnica stevilo.goveda\n\n")
-stevilo.goveda<-uvozistevilo()
+stevilo.goveda<-uvozi1()
 
 ok.stolpci<-substr(names(stevilo.goveda),1,4)=="leto"
 povprecje<-apply(stevilo.goveda[,ok.stolpci],1,mean,na.rm=TRUE)
 data.frame(povprečje=povprecje)
-stevilo.goveda<-merge(stevilo.goveda,data.frame(povprečje=povprecje),by=0,all=TRUE)
-stevilo.goveda <- stevilo.goveda[-1]
+stevilo.goveda <- data.frame(stevilo.goveda, povprečje=povprecje)
 rownames(stevilo.goveda) <- NULL
 
+stevilo.goveda <- data.frame(regija = c(rep("Slovenija", 22),
+                                        rep("Vzhodna Slovenija", 22),
+                                        rep("Zahodna Slovenija", 22)),
+                             stevilo.goveda[c(-1, -24, -47),])
+rownames(stevilo.goveda) <- NULL
+
+#urejenostna spremenljivka po vrstici-ni možno
 #ocena<-rep("solidno",69)
-#
 #ok.stolpci<-substr(names(stevilo.goveda),1,4)=="leto"
 #ocena[stevilo.goveda[2,ok.stolpci]<462000]<-"slabo"
 #ocena[stevilo.goveda[2,ok.stolpci]>470000]<-"odlično"
@@ -27,9 +32,11 @@ rownames(stevilo.goveda) <- NULL
 
 View(stevilo.goveda)
 
+
+#funkcija, ki uvozi podatke iz datoteke stevilo-prasicev.csv
 uvozi2<-function(){
   return(read.csv2("podatki/stevilo-prasicev.csv", skip=2,nrows=48,na.strings="-",
-                   col.names=c("ŠTEVILO PRAŠIČEV","vrste prašičev",paste("leto",2007:2013)),
+                   col.names=c("vrste prašičev",paste("leto",2007:2013)),
                    fileEncoding = "Windows-1250"))
 }
 # Zapišimo podatke v razpredelnico stevilo prasicev.
@@ -37,17 +44,47 @@ cat("Uvažam podatke o stevilu prasicev...razpredelnica stevilo.prasicev\n\n")
 stevilo.prasicev<-uvozi2()
 View(stevilo.prasicev)
 
+
+
+
+
+
+
+
+
+
+
 # Funkcija, ki uvozi podatke iz spletne strani
-# Ker imamo <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> potem nam ni potrebno podati parametra encoding
-library(XML)
-uvozi3<-function(){
-  naslov="http://pxweb.stat.si/pxweb/Dialog/Saveshow.asp"
-  doc<-htmlTreeParse(naslov, encoding = "UTF-8", useInternal = TRUE)
-}
-# Zapišimo podatke v razpredelnico .
-cat("Uvažam podatke o stevilu pracicev v državah v Evropi...razpredelnica stevilo-prasicev\n\n")
-stevilo<-uvozi3()
-View(stevilo)
+#library(XML)
+#stripByPath <- function(x, path) {
+#  unlist(xpathApply(x, path,
+#                    function(y) gsub("^\\s*(.*?)\\s*$", "\\1", xmlValue(y))))
+#}
+#
+#uvozi.ovce <- function() {
+#  url.ovce <- "podatki/stevilo-ovac.htm"
+#  doc.ovce <- htmlTreeParse(url.ovce, useInternalNodes=TRUE,encoding="Windows-1250")
+#
+#tabela <- getNodeSet(doc.ovce,"//table")
+#vrstica <- getNodeSet(tabela[[1]], "./tr")
+#seznam <- lapply(vrstica[2:length(vrstica)], stripByPath, "./td")
+#matrika <- matrix(unlist(seznam),nrow=length(seznam),byrow=TRUE)
+#colnames(matrika) <- gsub("\n", " ", stripByPath(tabela[[2]][[1]], ".//th"))
+#return(data.frame(apply(matrika, 2, as.numeric),
+#                  row.names=sapply(vrstica[2:length(vrstica)],stripByPath, "./th")))
+#}
+#cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
+#stevilo.ovac<-uvozi.ovce()
+#View(stevilo.ovac)
+
+
+
+
+
+
+
+
+
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
