@@ -17,7 +17,7 @@ legend("topright", c("Prašiči-SKUPAJ","Pujski,do 20kg-sesni","pujski,do 20kg-d
 
 
 barplot(stevilo.prasicev[16:30,3],beside = TRUE, main="Število prasicev v letu 2007-Vzhodna Slo", 
-        xlab = "leto 2007", ylab = "število prasicev",col = rainbow(30))
+        xlab = "leto 2007", ylab = "število prasičev",col = rainbow(30))
 barplot(stevilo.prasicev[30:45,3],beside = TRUE, main="Število prasicev v letu 2007-Zahodna Slo", 
         xlab = "leto 2007", ylab = "število prasicev",col = rainbow(30))
 
@@ -26,7 +26,7 @@ library(plotrix)
  
 slices <- stevilo.ovac[1:9,3] 
 lbls <- c(stevilo.ovac[1:9,2])
-pie3D(slices,labels=lbls,explode=0.2,main="stevilo ovac-SLOVENIJA")
+pie3D(slices,labels=lbls,explode=0.2,main="Število ovac-SLOVENIJA")
 
 legend("topright", c("Ovce-SKUPAJ","Jagnjeta in mlade ovce",
                      "Plemenske ovce-SKUPAJ",
