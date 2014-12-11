@@ -3,6 +3,6 @@ Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število
 
 Uvozil sem tabelo stevilo goveda in pri tem dodal še urejenostno spremenljivko ocena (primerjal sem slovensko povprečje in povprečje v štiriintridesetih državah v Evropi, torej ali je število posamezne vrste slabo zastopano, solidno ali odlično). Dodal sem stolpec povprečje pri kateremu sem izračunal vse povprečne vrednosti. V excelu sem dodal stolpec povprečje EU (ki obsega 34 držav v Evropi). Pri slednjem sem podatke črpal iz tabele, ki je na spletni strani Eurostat, seveda sem te povprečne vrednosti izračunal v Excelu. Tako pripravljeno tabelo (obsega 11 stolpcev in 69 vrstic) sem uvozil v program R, pri tem navedel še vse potrebne spremenljivke, imel pa sem težave z odpravljanjem znakov X v glavi tabele in pa znakov NA v tabeli.
 Uvozil sem tabelo stevilo prašičev iz datoteke stevilo-prasisev.csv, ki sem jo našel na spletni strani SURS in nato še tabelo v obliki html datokeke stevilo.ovac, ki sem ji tudi dobil na SURS-u.
-S pomočjo funkcije barplot sem narisal tri grafe in sicer število goveda v treh različnih letih ter jih shranil v dadoteko grafi.pdf
+S pomočjo funkcije barplot sem narisal šest grafov in sicer število goveda v treh različnih letih, število prašičev v treh različnih regijah, pri čemer sem pri enemu dodal še legendo. Narisal sem še 3D tortni diagram ter vse skupaj shranil v dadoteko grafi.pdf.
 
 Tukaj bo nastajalo poročilo o vašem projektu.

@@ -30,7 +30,7 @@ rownames(stevilo.goveda) <- NULL
 #oce<-factor(ocena,levels=c("slabo","solidno","odlično"),ordered=TRUE)
 #stevilo.goveda["ocena",ok.stolpci]<-oce
 
-View(stevilo.goveda)
+#View(stevilo.goveda)
 
 
 #funkcija, ki uvozi podatke iz datoteke stevilo-prasicev.csv
@@ -50,9 +50,7 @@ stevilo.prasicev <- data.frame(Regija = c(rep("Slovenija", 15),
                                stevilo.prasicev[c(-1, -17, -33),])
 rownames(stevilo.prasicev) <- NULL
 
-View(stevilo.prasicev)
-
-
+#View(stevilo.prasicev)
 
 
 
@@ -60,6 +58,13 @@ View(stevilo.prasicev)
 
 # Funkcija, ki uvozi podatke iz spletne strani
 library(XML)
+stripByPath <- function(x, path) {
+  unlist(xpathApply(x, path,
+                    function(y) gsub("^\\s*(.*?)\\s*$", "\\1",
+                                     gsub("^(.*?)\\[.*$", "\\1",
+                                          xmlValue(y)))))
+}
+
 uvozi.ovce <- function() {
   url.ovce <- "podatki/stevilo-ovac.htm"
   doc.ovce <- htmlTreeParse(url.ovce,
@@ -79,7 +84,7 @@ uvozi.ovce <- function() {
 }
 cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
 stevilo.ovac<-uvozi.ovce()
-View(stevilo.ovac)
+#View(stevilo.ovac)
 
 
 
