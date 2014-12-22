@@ -22,7 +22,7 @@ uvozi.ovce <- function() {
   return(data.frame(Regija = c(rep("Slovenija", 9),
                                rep("Vzhodna Slovenija", 9),
                                rep("Zahodna Slovenija", 9)),
-                    Kategorija = matrika[,1],
+                    Kategorija = iconv(matrika[,1],from="UTF-8"),
                     apply(matrika[,2:8], 2, as.numeric)))
 }
 cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
