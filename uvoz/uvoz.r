@@ -3,7 +3,7 @@
 #funkcija, ki uvozi podatke iz datoteke stevilo-goveda.csv
 uvozi1<-function(){
   return(read.csv2("podatki/stevilo-goveda.csv", skip=2,nrows=69,na.strings="-",
-          col.names=c("Kategorija",paste("leto",2007:2013),"Povprečje EU","ocena"),
+          col.names=c("Kategorija",paste("leto",2007:2013),"Povprečje EU"),
           fileEncoding = "Windows-1250"))
 }
 # Zapišimo podatke v razpredelnico stevilo goveda.
@@ -22,13 +22,11 @@ stevilo.goveda <- data.frame(Regija = c(rep("Slovenija", 22),
                              stevilo.goveda[c(-1, -24, -47),])
 rownames(stevilo.goveda) <- NULL
 
-#urejenostna spremenljivka po vrstici-ni možno
-#ocena<-rep("solidno",69)
-#ok.stolpci<-substr(names(stevilo.goveda),1,4)=="leto"
-#ocena[stevilo.goveda[2,ok.stolpci]<462000]<-"slabo"
-#ocena[stevilo.goveda[2,ok.stolpci]>470000]<-"odlično"
-#oce<-factor(ocena,levels=c("slabo","solidno","odlično"),ordered=TRUE)
-#stevilo.goveda["ocena",ok.stolpci]<-oce
+#dodajanje urenjenostne spremenljivke
+ocena<-rep("manj",length(stevilo.goveda[,11]))
+ocena[stevilo.goveda[,9]<stevilo.goveda[,11]]<-"več"
+oce<- factor(ocena, levels = c("manj","več"), ordered = TRUE)
+stevilo.goveda["primerjava 2013 in povprečja"]<-oce
 
 #View(stevilo.goveda)
 
