@@ -26,7 +26,6 @@ viri so v mapi `podatki/`. Slike, ki jih program naredi, se shranijo v mapo
 `zemljevid/`.
 
 ## Poročilo
-Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število goveda in prašičev v različnih letih. Podatki so razdeljeni na vzhodno in zahodno Slovenijo. Poleg tega pa bom to število primerjal z številom goveda in prašičev po različnih državah Evrope. Pofatke bom črpal iz statističnega urada republike Slovenije in iz uradne spletne strani Eurostat.
 
 Poročilo se nahaja v mapi `porocilo/`. Za izdelavo poročila v obliki PDF je
 potrebno datoteko `porocilo/porocilo.tex` prevesti z LaTeXom. Pred tem je

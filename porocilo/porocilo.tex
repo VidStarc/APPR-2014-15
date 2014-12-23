@@ -3,25 +3,100 @@
 \usepackage[slovene]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
+\usepackage{url}
+\usepackage{pdfpages}
 
 \pagestyle{plain}
 
 \begin{document}
-\title{Poročilo pri predmetu \\
-Analiza podatkov s programom R}
-\author{Študent FMF}
-\maketitle
+
+
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\center
+
+\textsc{\LARGE Fakulteta za matematiko in fiziko}\\[3 cm]
+\textsc{\Large Poročilo pri predmetu}\\[0.5cm]
+\textsc{\large Analiza podatkov s programom R}\\[2 cm]
+\HRule \\[0.4cm]
+{ \huge \bfseries Število živine}\\[0.4cm] 
+\HRule \\[6 cm]
+
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Avtor:}\\
+Vid \textsc{Starc}
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Mentor:} \\
+Dr. Janoš \textsc{Vidali}
+\end{flushright}
+\end{minipage}\\[2 cm]
+
+{\large \today}\\[3cm] 
+
+
+\end{titlepage}
+
 
 \section{Izbira teme}
+Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število goveda, prašičev in ovac v različnih letih. Podatki so razdeljeni na Vzhodno in Zahodno Slovenijo. Poleg tega pa bom to število primerjal s številom goveda in prašičev po različnih državah Evrope. Podatke bom črpal iz statističnega urada republike Slovenije in iz uradne spletne strani \verb|Eurostat|:
+\begin{itemize}
+\item \url{http://pxweb.stat.si/pxweb/Database/Okolje/15_kmetijstvo_ribistvo/05_zivinoreja/01_15174_stevilo_zivine/01_15174_stevilo_zivine.asp}
 
+\item \url{http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=apro_mt_lscatl&lang=en}
+
+\item \url{http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=apro_mt_lspig&lang=en}
+\end{itemize}
+
+Namen projekta je spoznati vsa potrebna orodja v programu R, ki služijo za kakovostno izdelavo projekta. Pri tem se bomo osredotočili na analizo podatkov, jih zapisovali v tabelo, risali podatkom primerne grafe in zemljevide. V mojem primeru
+
+\pagebreak
 \section{Obdelava, uvoz in čiščenje podatkov}
+Uvozil sem tabelo \verb|število goveda| in pri tem dodal še urejenostno spremenljivko primerjava med letom 2013 in povprečjem (torej če je število goveda večje ali manjše). Dodal sem stolpec povprečje pri kateremu sem izračunal vse povprečne vrednosti ter stolpec povprečje EU (ki obsega 34 držav v Evropi). Pri slednjem sem podatke črpal iz tabele, ki je na spletni strani \verb|Eurostat|, seveda sem te povprečne vrednosti izračunal v Excelu. Tako pripravljeno tabelo (obsega 11 stolpcev in 69 vrstic) sem uvozil v program R, pri tem navedel še vse potrebne spremenljivke, imel pa sem težave z odpravljanjem znakov X v glavi tabele in pa znakov NA v tabeli.
+Uvozil sem tabelo \verb|število prašičev| iz datoteke \verb|stevilo-prasisev.csv|, ki sem jo našel na spletni strani \verb|SURS| in nato še tabelo v obliki \textit{.htm} datokeke \verb|stevilo.ovac|, ki sem jo tudi dobil na \verb|SURS-u|.
+S pomočjo funkcije barplot sem narisal šest grafov in sicer število goveda v treh različnih letih, število prašičev v treh različnih regijah in pri usakemu dodal še primerno legendo. Narisal sem še 3D tortni diagram ter vse skupaj shranil v dadoteke \verb|grafX.pdf.|, kjer je X={1,2,...7}. Vse grafe si lahko ogledate spodaj.
 
-\section{Analiza in vizualizacija podatkov}
 
-\includegraphics{../slike/povprecna_druzina.pdf}
+\includegraphics[width=\textwidth]{../slike/graf1.pdf}
 
-\section{Napredna analiza podatkov}
+Graf primerja število goveda v letu 2007 v Vzhodni in Zahodni Sloveniji.
 
-\includegraphics{../slike/naselja.pdf}
+
+\includegraphics[width=\textwidth]{../slike/graf2.pdf}
+
+Graf primerja število goveda v letu 2008 v Vzhodni in Zahodni Sloveniji.
+
+\includegraphics[width=\textwidth]{../slike/graf3.pdf}
+
+Graf primerja število goveda v letu 2008 v Vzhodni in Zahodni Sloveniji.
+
+\includegraphics[width=\textwidth]{../slike/graf4.pdf}
+
+Graf prikazuje število prašičev v Sloveniji v letu 2007, pri čemer je število v tisočih.
+
+\includegraphics[width=\textwidth]{../slike/graf5.pdf}
+
+Graf prikazuje število prašičev v Zahodni Sloveniji v letu 2007, pri čemer je število v tisočih.
+
+\includegraphics[width=\textwidth]{../slike/graf6.pdf}
+
+Graf prikazuje število prašičev v Zahodni Sloveniji v letu 2007, pri čemer je število v tisočih.
+
+\includegraphics[width=\textwidth]{../slike/graf7.pdf}
+
+Tortni diagram prikazuje deleže števila ovac V Sloveniji.
+
+
+% \newpage
+% \section{Analiza in vizualizacija podatkov}
+% 
+% \newpage
+% \section{Napredna analiza podatkov}
+
 
 \end{document}
