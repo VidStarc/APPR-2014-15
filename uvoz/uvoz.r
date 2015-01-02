@@ -52,8 +52,6 @@ rownames(stevilo.prasicev) <- NULL
 
 
 
-
-
 # Funkcija, ki uvozi podatke iz spletne strani
 source("lib/xml.r",encoding="UTF-8")
 cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
