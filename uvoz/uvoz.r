@@ -31,6 +31,7 @@ stevilo.goveda["primerjava 2013 in povprečja"]<-oce
 #View(stevilo.goveda)
 
 
+
 #funkcija, ki uvozi podatke iz datoteke stevilo-prasicev.csv
 uvozi2<-function(){
   return(read.csv2("podatki/stevilo-prasicev.csv", skip=2,nrows=48,na.strings="-",
@@ -49,6 +50,21 @@ stevilo.prasicev <- data.frame(Regija = c(rep("Slovenija", 15),
 rownames(stevilo.prasicev) <- NULL
 
 #View(stevilo.prasicev)
+
+
+
+#funkcija, ki uvozi podatke iz datoteke stevilo-govedaEU.csv
+uvozi3<-function(){
+  return(read.csv("podatki/stevilo-govedaEU.csv",na.strings="-",
+                   col.names=c("Država",paste("leto",2007:2013)),
+                   fileEncoding = "Windows-1250"))
+}
+
+#zapišimo podatke v razpredelnico stevilo.govedaEU
+cat("Uvažam podatke o stevilu goveda v EU...razpredelnica stevilo.govedaEU\n\n")
+stevilo.govedaEU<-uvozi3()
+
+View(stevilo.govedaEU)
 
 
 
