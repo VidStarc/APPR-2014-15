@@ -11,42 +11,45 @@ slo <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2/shp/SVN_adm.zip",
 zahodna<-slo[c(1,2,6,7),]
 vzhodna<-slo[c(-1,-2,-6,-7),]
 
-# Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
-preuredi <- function(podatki, zemljevid) {
-  nove.obcine <- c()
-  manjkajo <- ! nove.obcine %in% rownames(podatki)
-  M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
-  names(M) <- names(podatki)
-  row.names(M) <- nove.obcine[manjkajo]
-  podatki <- rbind(podatki, M)
-  
-  out <- data.frame(podatki[order(rownames(podatki)), ])[rank(levels(zemljevid$NAME_1)[rank(zemljevid$NAME_1)]), ]
-  if (ncol(podatki) == 1) {
-    out <- data.frame(out)
-    names(out) <- names(podatki)
-    rownames(out) <- rownames(podatki)
-  }
-  return(out)
-}
-# Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
-stevilo<- preuredi(stevilo.goveda, zahodna)
+zahod <- c(1,2,6,7)
+stolpci <- 6:9
+govedo.zahod <- stevilo.goveda[45, stolpci]
+govedo.vzhod <- stevilo.goveda[23, stolpci]
+norm.zahod <- (govedo.zahod-min(govedo.zahod)*0.98)/(max(govedo.zahod)-min(govedo.zahod)*0.98)
+norm.vzhod <- (govedo.vzhod-min(govedo.vzhod)*0.98)/(max(govedo.vzhod)-min(govedo.vzhod)*0.98)
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid slovenije...\n")
+pdf("slike/slovenija.pdf")
 
 #Spremenjene koordinate in imena za Slovenijo
 ko<- coordinates(slo)
-imena1 <- as.character(slo$NAME_1)
-rownames(ko) <- imena1
-names(imena1) <- imena1
-ko["Obalno-kraška",1] <- ko["Obalno-kraška",1]
-ko["Obalno-kraška",2] <- ko["Obalno-kraška",2]
-ko["Zasavska",2] <- ko["Zasavska",2] 
+imena <- as.character(slo$NAME_1)
+rownames(ko) <- imena
+names(imena1) <- imena
+ko["Obalno-kraška",1] <- ko["Obalno-kraška",1]+0.11
+ko["Obalno-kraška",2] <- ko["Obalno-kraška",2]-0.05
+ko["Zasavska",2] <- ko["Zasavska",2]+0.01
+ko["Pomurska",1]<-ko["Pomurska",1]+0.05
 ko["Spodnjeposavska",1] <- ko["Spodnjeposavska",1]
-ko["Spodnjeposavska",2] <- ko["Spodnjeposavska",2]
-imena1["Jugovzhodna Slovenija"] <- "Jugovzhodna\nSlovenija"
-imena1["Notranjsko-kraška"] <- "Notranjsko-\nkraška"
-imena1["Obalno-kraška"] <- "Obalno-\nkraška"
+ko["Spodnjeposavska",2] <- ko["Spodnjeposavska",2]+0.025
+imena["Jugovzhodna Slovenija"] <- "Jugovzhodna\nSlovenija"
+imena["Notranjsko-kraška"] <- "Notranjsko-\nkraška"
+imena["Obalno-kraška"] <- "Obalno-\nkraška"
+
+# Rišemo zemljevide v mrežo velikosti 2x2
+par(mfrow=c(2,2))
+for (i in 1:4) {
+  plot(slo, col=ifelse(1:nrow(slo) %in% zahod,
+                       rgb(0, 0, 1, norm.zahod[[i]]),
+                       rgb(0, 1, 0, norm.vzhod[[i]])))
+  title(paste("Leto", 2009+i))
+  text(ko,labels=imena1,cex=0.3)
+}
+
+# Povrnemo prvotno nastavitev
+par(mfrow=c(1, 1))
+dev.off()
 
 # # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 # druzine <- preuredi(druzine, obcine)
