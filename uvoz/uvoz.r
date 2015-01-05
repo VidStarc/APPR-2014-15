@@ -66,6 +66,10 @@ stevilo.govedaEU<-uvozi3()
 
 stevilo.govedaEU$število <- as.numeric(gsub(",", "", stevilo.govedaEU$število))
 stevilo.govedaEU<-stevilo.govedaEU[c(-3,-4,-5)]
+stevilo.govedaEU$Država[grep("Germany", stevilo.govedaEU$Država)] <- "Germany"
+stevilo.govedaEU$Država[grep("Macedonia", stevilo.govedaEU$Država)] <- "Macedonia"
+stevilo.goveda.2013 <- stevilo.govedaEU[stevilo.govedaEU$Leto == 2013,]
+rownames(stevilo.goveda.2013) <- NULL
 
 View(stevilo.govedaEU)
 

@@ -26,7 +26,7 @@ pdf("slike/slovenija.pdf")
 ko<- coordinates(slo)
 imena <- as.character(slo$NAME_1)
 rownames(ko) <- imena
-names(imena1) <- imena
+names(imena) <- imena
 ko["Zasavska",2] <- ko["Zasavska",2]+0.01
 ko["Pomurska",1]<-ko["Pomurska",1]+0.05
 ko["Obalno-kraška",1] <- ko["Obalno-kraška",1]+0.11
@@ -44,7 +44,7 @@ for (i in 1:4) {
                        rgb(0, 0, 1, norm.zahod[[i]]),
                        rgb(0, 1, 0, norm.vzhod[[i]])))
   title(paste("Leto", 2009+i))
-  text(ko,labels=imena1,cex=0.3)
+  text(ko,labels=imena,cex=0.3)
 }
 
 # Povrnemo prvotno nastavitev
@@ -65,15 +65,15 @@ evropa<-svet$continent %in% "Europe" | svet$name_long %in% c("Cyprus","Turkey")
 
 #Podatki za države na področju Evrope
 Evropa<-svet[evropa,]
-m <- match(Evropa$name_long, stevilo.govedaEU[seq(7,238,8),2])
+m <- match(Evropa$name_long, stevilo.goveda.2013$Država)
 
 #Logični vektor držav EU
-eu<-Evropa$name_long %in% stevilo.govedaEU[seq(7,238,8),2]
+eu<-Evropa$name_long %in% stevilo.goveda.2013
 #Podatki za države EU
 EU<-Evropa[eu,]
 
-stevilo.govedaeu<- stevilo.govedaEU[as.character(EU$name_long),]
-Evropa$število<-stevilo.govedaeu$število[m]
+stevilo<- stevilo.govedaEU[as.character(EU$name_long),]
+Evropa$število<-stevilo$število[m]
 # podzemljevid za države s podatki - za izpis imen
 EU <- Evropa[!is.na(m),]
 
@@ -83,17 +83,27 @@ imena <- as.character(EU$name_long)
 rownames(koor)<-imena
 names(imena)<-imena
 
+# koor["Norway",1] <- koor["Norway",1] - 2
+# koor["Cyprus",2] <- koor["Cyprus",2] - 1
+# koor["United Kingdom",1] <- koor["United Kingdom",1]+1
+# koor["United Kingdom",2] <- koor["United Kingdom",2]-1
+# koor["Sweden",1] <- koor["Sweden",1]-1
+# koor["Greece",1] <- koor["Greece",1]-0.8
+# imena["United Kingdom"] <- "United\nKingdom"
+# imena["Czech Republic"] <- "Czech\nRepublic"
+
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid o skupnem številu goveda...\n")
 pdf("slike/evropa.pdf")
 
 
+rot <- ifelse(imena == "Portugal", 90, 0)
 print(spplot(Evropa, "število", xlim=c(-25, 40), ylim=c(33, 73),
              main = "Skupno število goveda po državah EU v letu 2013 (v 1000)",
              col.regions = topo.colors(100),
              sp.layout = list(
                list("sp.polygons", Evropa[is.na(m),], fill = "white"),
-               list("sp.text", koordinate, imena, cex = 0.5,col="red")),
+               list("sp.text", koor, imena, cex = 0.5,col="red", srt=rot)),
              par.settings = list(panel.background=list(col="lightyellow"))))
 dev.off() 
 
