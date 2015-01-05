@@ -61,8 +61,8 @@ svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthd
                         encoding = "Windows-1250")
 
 #Dodamo manjkajoči državi-Turčija in Ciper
-evropa<-svet$continent %in% "Europe" | svet$name_long %in% c("Cyprus",
-                                                           "Turkey")
+evropa<-svet$continent %in% "Europe" | svet$name_long %in% c("Cyprus","Turkey")
+
 #Podatki za države na področju Evrope
 Evropa<-svet[evropa,]
 m <- match(Evropa$name_long, stevilo.govedaEU[seq(7,238,8),2])
