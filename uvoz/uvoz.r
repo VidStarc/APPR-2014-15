@@ -55,14 +55,17 @@ rownames(stevilo.prasicev) <- NULL
 
 #funkcija, ki uvozi podatke iz datoteke stevilo-govedaEU.csv
 uvozi3<-function(){
-  return(read.csv("podatki/stevilo-govedaEU.csv",na.strings="-",
-                   col.names=c("Država",paste("leto",2007:2013)),
+  return(read.csv("podatki/stevilo-govedaEU.csv",header = TRUE, as.is = TRUE, na.strings = "NA",
+                   col.names=c("Leto","Država","vrsta živine","mesec","enota","število"),
                    fileEncoding = "Windows-1250"))
 }
 
 #zapišimo podatke v razpredelnico stevilo.govedaEU
 cat("Uvažam podatke o stevilu goveda v EU...razpredelnica stevilo.govedaEU\n\n")
 stevilo.govedaEU<-uvozi3()
+
+stevilo.govedaEU$število <- as.numeric(gsub(",", "", stevilo.govedaEU$število))
+stevilo.govedaEU<-stevilo.govedaEU[c(-3,-4,-5)]
 
 View(stevilo.govedaEU)
 
