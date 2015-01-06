@@ -71,7 +71,7 @@ stevilo.govedaEU$Država[grep("Macedonia", stevilo.govedaEU$Država)] <- "Macedo
 stevilo.goveda.2013 <- stevilo.govedaEU[stevilo.govedaEU$Leto == 2013,]
 rownames(stevilo.goveda.2013) <- NULL
 
-View(stevilo.govedaEU)
+#View(stevilo.govedaEU)
 
 
 
