@@ -8,8 +8,6 @@ cat("Uvažam zemljevid slovenije...\n")
 slo <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2/shp/SVN_adm.zip",
                        "Slovenija", "SVN_adm1.shp", mapa = "zemljevid",
                        encoding = "Windows-1250")
-zahodna<-slo[c(1,2,6,7),]
-vzhodna<-slo[c(-1,-2,-6,-7),]
 
 zahod <- c(1,2,6,7)
 stolpci <- 6:9
