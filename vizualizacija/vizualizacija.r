@@ -3,6 +3,8 @@
 # Uvozimo funkcijo za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r")
 
+
+#1.ZEMLJEVID
 # Uvozimo zemljevid slovenije po regijah.
 cat("Uvažam zemljevid slovenije...\n")
 slo <- uvozi.zemljevid("http://biogeo.ucdavis.edu/data/gadm2/shp/SVN_adm.zip",
@@ -51,7 +53,7 @@ dev.off()
 
 
 
-
+#2.ZEMLJEVID
 #Uvozimo zemljevid sveta
 cat("Uvažam zemljevid sveta...\n")
 svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",

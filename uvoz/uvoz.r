@@ -1,5 +1,6 @@
 # 2. faza: Uvoz podatkov
 
+#1.TABELA
 #funkcija, ki uvozi podatke iz datoteke stevilo-goveda.csv
 uvozi1<-function(){
   return(read.csv2("podatki/stevilo-goveda.csv", skip=2,nrows=69,na.strings="-",
@@ -31,7 +32,7 @@ stevilo.goveda["primerjava 2013 in povprečja"]<-oce
 #View(stevilo.goveda)
 
 
-
+#2.TABELA
 #funkcija, ki uvozi podatke iz datoteke stevilo-prasicev.csv
 uvozi2<-function(){
   return(read.csv2("podatki/stevilo-prasicev.csv", skip=2,nrows=48,na.strings="-",
@@ -52,7 +53,7 @@ rownames(stevilo.prasicev) <- NULL
 #View(stevilo.prasicev)
 
 
-
+#3.TABELA
 #funkcija, ki uvozi podatke iz datoteke stevilo-govedaEU.csv
 uvozi3<-function(){
   return(read.csv("podatki/stevilo-govedaEU.csv",header = TRUE, as.is = TRUE, na.strings = "NA",
@@ -74,7 +75,7 @@ rownames(stevilo.goveda.2013) <- NULL
 #View(stevilo.govedaEU)
 
 
-
+#4.TABELA
 # Funkcija, ki uvozi podatke iz spletne strani
 source("lib/xml.r",encoding="UTF-8")
 cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
