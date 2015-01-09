@@ -84,13 +84,23 @@ koor["Sweden",1] <- koor["Sweden",1]-1
 koor["Greece",1] <- koor["Greece",1]-0.8
 koor["United Kingdom",1] <- koor["United Kingdom",1]+0.8
 koor["United Kingdom",2] <- koor["United Kingdom",2]-0.8
-koor["Croatia",2]<-koor["Croatia",2]+0.7
+koor["Croatia",2]<-koor["Croatia",2]+0.6
+koor["Croatia",1]<-koor["Croatia",1]+0.4
+koor["Slovakia",2]<-koor["Slovakia",2]+0.2
+koor["Latvia",1]<-koor["Latvia",1]+0.4
+koor["Belgium",1]<-koor["Belgium",1]+0.2
+
+
 imena["United Kingdom"] <- "United\nKingdom"
 imena["Czech Republic"] <- "Czech\nRepublic"
 imena["Bosnia and Herzegovina"]<-"BIH"
+imena["Slovenia"]<-"SLO"
+imena["Macedonia"]<-"MKD"
+imena["Netherlands"]<-"NLD"
+imena["Denmark"]<-"DNK"
 
 # Narišimo zemljevid v PDF.
-cat("Rišem zemljevid o skupnem številu goveda...\n")
+cat("Rišem zemljevid o skupnem številu goveda v EU...\n")
 pdf("slike/evropa.pdf")
 
 

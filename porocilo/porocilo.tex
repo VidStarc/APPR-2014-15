@@ -55,7 +55,6 @@ Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število
 
 Namen projekta je spoznati vsa potrebna orodja v programu R, ki služijo za kakovostno izdelavo projekta. Pri tem se bomo osredotočili na analizo podatkov, jih zapisovali v tabelo, risali podatkom primerne grafe in zemljevide. V mojem primeru
 
-\pagebreak
 \section{Obdelava, uvoz in čiščenje podatkov}
 Uvozil sem tabelo \verb|število goveda| in pri tem dodal še urejenostno spremenljivko primerjava med letom 2013 in povprečjem (torej če je število goveda večje ali manjše). Dodal sem stolpec povprečje pri kateremu sem izračunal vse povprečne vrednosti ter stolpec povprečje EU (ki obsega 34 držav v Evropi). Pri slednjem sem podatke črpal iz tabele, ki je na spletni strani \verb|Eurostat|, seveda sem te povprečne vrednosti izračunal v Excelu. Tako pripravljeno tabelo (obsega 11 stolpcev in 69 vrstic) sem uvozil v program R, pri tem navedel še vse potrebne spremenljivke, imel pa sem težave z odpravljanjem znakov X v glavi tabele in pa znakov NA v tabeli.
 Uvozil sem tabelo \verb|število prašičev| iz datoteke \verb|stevilo-prasisev.csv|, ki sem jo našel na spletni strani \verb|SURS| in nato še tabelo v obliki \textit{.htm} datokeke \verb|stevilo.ovac|, ki sem jo tudi dobil na \verb|SURS-u|.
@@ -99,8 +98,8 @@ Uvozil sem zemljevid Slovenije po regijah, ter regije razdelil na tiste, ki spad
 \includegraphics[width=\textwidth]{../slike/slovenija.pdf}
 Zemljevidi prikazujejo število goveda po Vzhodni in Zahodni Sloveniji v letih 2010-2013.
 
-
-Nato sem uvozil še eno tabelo iz strani \verb|Eurostat|, in sicer tabelo \verb|stevilo.govedaEU|, ki prikazuje skupno število goveda po različnih državah Evropske Unije v letih 2007-2013. To tabelo sem potreboval, ker sem želel uvoziti še zemljevid Evrope in nanj prikazati podatke, katere zajema moja tematika. Na zemljevidu, ki se nahaja spodaj sem prikazal skupno število goveda v letu 2013. Pri tem sem dodal še imena držav, popravil imena in  koordinate imen, izpustil Makedonijo in Luksemburg (ker sta bili njeni imeni na zemljevidu neberljivi), ter Bosno in Hercegovino skrajsal na BIH.
+\pagebreak
+\noindent Nato sem uvozil še eno tabelo iz strani \verb|Eurostat|, in sicer tabelo \verb|stevilo.govedaEU|, ki prikazuje skupno število goveda po različnih državah Evropske Unije v letih 2007-2013. To tabelo sem potreboval, ker sem želel uvoziti še zemljevid Evrope in nanj prikazati podatke, katere zajema moja tematika. Na zemljevidu, ki se nahaja spodaj sem prikazal skupno število goveda v letu 2013. Pri tem sem dodal še imena držav, popravil imena in  koordinate imen, izpustil Makedonijo in Luksemburg (ker sta bili njuni imeni na zemljevidu neberljivi), ter Bosno in Hercegovino skrajsal na BIH, Nizozemsko na NLD, Makedonijo na MKD, Dansko na DNK in Slovenijo na SLO. Tako urejen zemljevid sem shranil v datoteko \verb|evropa.pdf|.
 
 
 \includegraphics[width=\textwidth]{../slike/evropa.pdf}
