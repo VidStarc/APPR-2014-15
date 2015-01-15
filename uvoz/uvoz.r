@@ -3,7 +3,7 @@
 #1.TABELA
 #funkcija, ki uvozi podatke iz datoteke stevilo-goveda.csv
 uvozi1<-function(){
-  return(read.csv2("podatki/stevilo-goveda.csv", skip=2,nrows=69,na.strings="-",
+  return(read.csv2("podatki/stevilo-goveda.csv", skip=2,nrows=69,na.strings=":",
           col.names=c("Kategorija",paste("leto",2007:2013),"Povprečje EU"),
           fileEncoding = "Windows-1250"))
 }
@@ -35,7 +35,7 @@ stevilo.goveda["primerjava 2013 in povprečja"]<-oce
 #2.TABELA
 #funkcija, ki uvozi podatke iz datoteke stevilo-prasicev.csv
 uvozi2<-function(){
-  return(read.csv2("podatki/stevilo-prasicev.csv", skip=2,nrows=48,na.strings="-",
+  return(read.csv2("podatki/stevilo-prasicev.csv", skip=2,nrows=48,na.strings=":",
                    col.names=c("Kategorija",paste("leto",2007:2013)),
                    fileEncoding = "Windows-1250"))
 }
@@ -56,7 +56,7 @@ rownames(stevilo.prasicev) <- NULL
 #3.TABELA
 #funkcija, ki uvozi podatke iz datoteke stevilo-govedaEU.csv
 uvozi3<-function(){
-  return(read.csv("podatki/stevilo-govedaEU.csv",header = TRUE, as.is = TRUE, na.strings = "NA",
+  return(read.csv("podatki/stevilo-govedaEU.csv",header = TRUE, as.is = TRUE, na.strings = ":",
                    col.names=c("Leto","Država","vrsta živine","mesec","enota","število"),
                    fileEncoding = "Windows-1250"))
 }

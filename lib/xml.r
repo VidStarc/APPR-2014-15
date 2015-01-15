@@ -25,7 +25,6 @@ uvozi.ovce <- function() {
                     Kategorija = iconv(matrika[,1],from="UTF-8"),
                     apply(matrika[,2:8], 2, as.numeric)))
 }
-cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
 
 # library(XML)
 # 
