@@ -13,7 +13,6 @@ stevilo.goveda<-uvozi1()
 
 ok.stolpci<-substr(names(stevilo.goveda),1,4)=="leto"
 povprecje<-apply(stevilo.goveda[,ok.stolpci],1,mean,na.rm=TRUE)
-data.frame(povprečje=povprecje)
 stevilo.goveda <- data.frame(stevilo.goveda, povprečje=povprecje)
 rownames(stevilo.goveda) <- NULL
 
