@@ -13,17 +13,19 @@ kvad<-lm(govedo~I(leta^2)+leta)
 curve(predict(kvad, data.frame(leta=x)),add=TRUE,col="blue")
 #model Loess
 loess<-loess(govedo~leta)
+curve(predict(loess, data.frame(leta=x)),add=TRUE,col="green")
 #pogledamo ostanke pri teh modelih
 ostanki<-sapply(list(lin, kvad, loess), function(x) sum(x$residuals^2))
 dev.off()
-#napoved za skupno število goveda do leta 2035
+#napoved za skupno število goveda do leta 2035 po različnih modelih
 pdf("slike/napoved.pdf")
-plot(leta,govedo,xlim=c(1991,2035),ylim=c(400,600),
+plot(leta,govedo,xlim=c(1991,2025),ylim=c(430,530),
      xlab="Leto",ylab="Skupno število goveda (*1000)",
      main="Napoved za skupno število goveda do leta 2035")
-napoved<-function(x,model){predict(model,data.frame(leto=x))}
+napoved<-function(x,model){predict(model,data.frame(leta=x))}
 curve(napoved(x, lin), add=TRUE,col="red")
 curve(napoved(x, kvad), add=TRUE, col="blue")
+curve(napoved(x, loess), add=TRUE, col="green")
 dev.off()
 
 
