@@ -25,15 +25,6 @@ napoved<-function(x,model){predict(model,data.frame(leto=x))}
 curve(napoved(x, lin), add=TRUE,col="red")
 curve(napoved(x, kvad), add=TRUE, col="blue")
 dev.off()
-# #Narisali bomo napoved za rast prebivalstva do leta 2030 po modelu za modeala linear in kvadratna 
-# pdf("slike/napoved.pdf")
-# plot(demographics$Year, pop, xlim = c(1935, 2050), ylim = c(120, 450), 
-#      xlab = "Leto", ylab = "Populacija (v mil)",
-#      main = "Predvidena rast prebivalstva po različnih modelih")      
-# napoved <- function(x,model){predict(model, data.frame(leto=x-1900))} 
-# curve(napoved(x, linearna), add= TRUE, col = "blue")
-# curve(napoved(x, kvadratna), add = TRUE, col = "red")
-# dev.off()
 
 
 
