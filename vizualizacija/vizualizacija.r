@@ -69,7 +69,7 @@ m <- match(Evro$name_long, stevilo.goveda.2013$Država)
 eu<-Evro$name_long %in% stevilo.goveda.2013$Država
 EU<-Evro[eu,]
 
-Evro$število<-stevilo.goveda.2013$število[m]
+Evro$število<-stevilo.goveda.2013$število.goveda[m]
 # podzemljevid za države s podatki - za izpis imen
 EU <- Evro[!is.na(m) & ! Evro$name_long %in% c("Montenegro", "Luxembourg"),]
 
@@ -100,7 +100,7 @@ imena["Netherlands"]<-"NLD"
 imena["Denmark"]<-"DNK"
 
 # Narišimo zemljevid v PDF.
-cat("Rišem zemljevid o skupnem številu goveda v EU...\n")
+cat("Rišem zemljevid o skupnem stevilu goveda v EU...\n")
 pdf("slike/evropa.pdf")
 
 
@@ -113,8 +113,71 @@ print(spplot(Evro, "število", xlim=c(-25, 40), ylim=c(33, 73),
                list("sp.text", koor, imena,col="black", cex = 0.3, srt=rot)),
              par.settings = list(panel.background=list(col="lightblue"))))
 
-dev.off() 
+dev.off()
 
+
+
+#3.ZEMLJEVID
+#Uvozimo zemljevid sveta
+cat("Uvažam zemljevid sveta...\n")
+svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",
+                        "svet", "ne_110m_admin_0_countries.shp", mapa = "zemljevid",
+                        encoding = "Windows-1250")
+
+#Dodamo manjkajoči državi-Turčija in Ciper
+evro<-svet$continent %in% "Europe" | svet$name_long %in% c("Cyprus","Turkey")
+
+Evro<-svet[evro,]
+m <- match(Evro$name_long, stevilo.goveda.2013$Država)
+
+eu<-Evro$name_long %in% stevilo.goveda.2013$Država
+EU<-Evro[eu,]
+
+Evro$število<-stevilo.goveda.2013$delez[m]
+# podzemljevid za države s podatki - za izpis imen
+EU <- Evro[!is.na(m) & ! Evro$name_long %in% c("Montenegro", "Luxembourg"),]
+
+#Uredim koordinate in imena - samo za države s podatki
+imena <- as.character(EU$name_long)
+koor<- coordinates(EU)
+rownames(koor)<-imena
+names(imena)<-imena
+
+koor["Cyprus",2] <- koor["Cyprus",2]-0.8
+koor["Sweden",1] <- koor["Sweden",1]-1
+koor["Greece",1] <- koor["Greece",1]-0.8
+koor["United Kingdom",1] <- koor["United Kingdom",1]+0.8
+koor["United Kingdom",2] <- koor["United Kingdom",2]-0.8
+koor["Croatia",2]<-koor["Croatia",2]+0.6
+koor["Croatia",1]<-koor["Croatia",1]+0.4
+koor["Slovakia",2]<-koor["Slovakia",2]+0.2
+koor["Latvia",1]<-koor["Latvia",1]+0.4
+koor["Belgium",1]<-koor["Belgium",1]+0.2
+
+
+imena["United Kingdom"] <- "United\nKingdom"
+imena["Czech Republic"] <- "Czech\nRepublic"
+imena["Bosnia and Herzegovina"]<-"BIH"
+imena["Slovenia"]<-"SLO"
+imena["Macedonia"]<-"MKD"
+imena["Netherlands"]<-"NLD"
+imena["Denmark"]<-"DNK"
+
+# Narišimo zemljevid v PDF.
+cat("Rišem zemljevid o stevilu goveda na prebivalca...\n")
+pdf("slike/evropa1.pdf")
+
+
+rot <- ifelse(imena == "Portugal", 90, 0)
+print(spplot(Evro, "število", xlim=c(-25, 40), ylim=c(33, 73),
+             main = "Število goveda na prebivalca v EU v letu 2013",
+             col.regions = topo.colors(100),
+             sp.layout = list(
+               list("sp.polygons", Evro[is.na(m),], fill = "white"),
+               list("sp.text", koor, imena,col="black", cex = 0.3, srt=rot)),
+             par.settings = list(panel.background=list(col="lightblue"))))
+
+dev.off()
 
 
 

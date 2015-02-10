@@ -1,0 +1,52 @@
+"Število goveda po: LETO , VRSTA GOVEDA"
+
+" ";"Govedo - SKUPAJ"
+"1991";483865
+"1992";503770
+"1993";477548
+"1994";477400
+"1995";495535
+"1996";486198
+"1997";445724
+"1998";453097
+"1999";471425
+"2000";493670
+"2001";477075
+"2002";473242
+"2003";450226
+"2004";451136
+"2005";452517
+"2006";454033
+"2007";479581
+"2008";469983
+"2009";472878
+"2010";470151
+"2011";462300
+"2012";460063
+"2013";460576
+
+"Vir: Statistièni urad Republike Slovenije. "
+" "
+" "
+"V letu 2007 prihaja do preloma serije. Od leta 2007 naprej osnovne "
+"podatke o  številu govedi na dan 1. december pridobimo iz Centralnega "
+"registra govedi, "
+"podatke o namenu reje pa zberemo s pomoèjo vzorènega raziskovanja."
+
+"Pri govedu sta iz raziskovanj za obdobje 1991-2002 primerljiva samo "
+"dva podatka: govedo skupaj in krave skupaj. Ker v tem obdobju nismo "
+"imeli na voljo podrobnih podatkov za oceno števila živali v "
+"posameznih kategorijah, smo se odloèili, da objavimo le podatke o "
+"skupnem številu goveda in skupnem številu krav. Od leta 1996 "
+"objavljamo tudi podatke o številu goveda po starostnih skupinah. Od "
+"leta 2000 objavljamo vse podatke. "
+" "
+"Povezane vsebine: "
+"- (seznam HREF=http://www.stat.si/doc/metod_pojasnila/15-056-MP.htm "
+"target=_blank) Metodološka pojasnila "
+"- (seznam "
+"HREF=http://www.stat.si/koledar.asp?pod=15&kon=056&DatumOd=1.1.2005&D-"
+"atumDo=Date() target=_blank) Koledar objav "
+"- (seznam HREF=http://www.stat.si/metodologija_vpr.asp?pod=15&kon=056 "
+"target=_blank) Vprašalniki statistiènega raziskovanja "
+

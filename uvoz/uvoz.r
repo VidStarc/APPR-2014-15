@@ -56,7 +56,7 @@ rownames(stevilo.prasicev) <- NULL
 #funkcija, ki uvozi podatke iz datoteke stevilo-govedaEU.csv
 uvozi3<-function(){
   return(read.csv("podatki/stevilo-govedaEU.csv",header = TRUE, as.is = TRUE, na.strings = ":",
-                   col.names=c("Leto","Država","vrsta živine","mesec","enota","število"),
+                   col.names=c("Leto","Država","vrsta živine","mesec","enota","število.goveda"),
                    fileEncoding = "Windows-1250"))
 }
 
@@ -64,7 +64,7 @@ uvozi3<-function(){
 cat("Uvažam podatke o stevilu goveda v EU...razpredelnica stevilo.govedaEU\n\n")
 stevilo.govedaEU<-uvozi3()
 
-stevilo.govedaEU$število <- as.numeric(gsub(",", "", stevilo.govedaEU$število))
+stevilo.govedaEU$število.goveda <- as.numeric(gsub(",", "", stevilo.govedaEU$število.goveda))
 stevilo.govedaEU<-stevilo.govedaEU[c(-3,-4,-5)]
 stevilo.govedaEU$Država[grep("Germany", stevilo.govedaEU$Država)] <- "Germany"
 stevilo.govedaEU$Država[grep("Macedonia", stevilo.govedaEU$Država)] <- "Macedonia"
@@ -80,14 +80,35 @@ source("lib/xml.r",encoding="UTF-8")
 cat("Uvažam podatke o stevilu ovac...razpredelnica stevilo.ovac\n")
 stevilo.ovac<-uvozi.ovce()
 
+# 5.TABELA-stevilo prebivalcev v državah Evrope
+uvozi5<-function(){
+  return(read.csv("podatki/stevilo-preb.csv",header = TRUE, as.is = TRUE, na.strings = ":",
+                  col.names=c("Leto","Država", " ","število.prebivalcev"),
+                  fileEncoding = "Windows-1250"))
+}
 
+#zapišimo podatke v razpredelnico stevilo.preb
+cat("Uvažam podatke o stevilu prebivalcev v EU...razpredelnica stevilo.preb\n\n")
+stevilo.preb<-uvozi5()
+stevilo.preb<-stevilo.preb[,-3]
+stevilo.preb$število.prebivalcev <- as.numeric(gsub(",", "", stevilo.preb$število.prebivalcev))
+stevilo.preb$Država[grep("Germany", stevilo.preb$Država)] <- "Germany"
+stevilo.preb$Država[grep("Macedonia", stevilo.preb$Država)] <- "Macedonia"
 
+stevilo.goveda.2013<-data.frame(stevilo.goveda.2013,stevilo.preb)
+stevilo.goveda.2013<-stevilo.goveda.2013[,c(-4,-5)]
+delez<-(stevilo.goveda.2013[,3]*1000)/stevilo.goveda.2013[,4]
 
+stevilo.goveda.2013<-data.frame(stevilo.goveda.2013,delez)
 
-
-
-
-
+#6.TABELA
+uvozi6<-function(){
+  return(read.csv2("podatki/govedo-skupaj.csv",header = TRUE,  skip=2 ,nrows=23, as.is = TRUE, 
+                   na.strings = ":",col.names=c("leto","število.goveda"),fileEncoding = "Windows-1250"))
+}
+#zapišimo podatke v razpredelnico stevilo
+cat("Uvažam podatke o skupnem stevilu goveda...razpredelnica stevilo\n\n")
+stevilo<-uvozi6()
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo

@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage{pdfpages}
+\usepackage{animate}
 
 \pagestyle{plain}
 
@@ -44,7 +45,7 @@ Dr. Janoš \textsc{Vidali}
 
 
 \section{Izbira teme}
-Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število goveda, prašičev in ovac v različnih letih. Podatki so razdeljeni na Vzhodno in Zahodno Slovenijo. Poleg tega pa bom to število primerjal s številom goveda in prašičev po različnih državah Evrope. Podatke bom črpal iz statističnega urada republike Slovenije in iz uradne spletne strani \verb|Eurostat|:
+Izbral sem si temo število živine v Sloveniji in sicer bom predstavil število goveda, prašičev in ovac v različnih letih in pri tem temeljito analiziral število goveda ter število ovac v letu 2007. Podatki so razdeljeni na kohezijski regiji: Vzhodno in Zahodno Slovenijo. Poleg tega pa bom število goveda primerjal še s številom goveda po različnih državah Evrope. Podatke bom črpal iz statističnega urada republike Slovenije in iz uradne spletne strani \verb|Eurostat|:
 \begin{enumerate}
 \item \url{http://pxweb.stat.si/pxweb/Database/Okolje/15_kmetijstvo_ribistvo/05_zivinoreja/01_15174_stevilo_zivine/01_15174_stevilo_zivine.asp}
 
@@ -53,64 +54,69 @@ Izbral sem si temo Število živine v Sloveniji in sicer bom predstavil število
 \item \url{http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=apro_mt_lspig&lang=en}
 \end{enumerate}
 
-Namen projekta je spoznati vsa potrebna orodja v programu R, ki služijo za kakovostno izdelavo projekta. Pri tem se bomo osredotočili na analizo podatkov, jih zapisovali v tabelo, risali podatkom primerne grafe in zemljevide.
+\noindent Namen projekta je spoznati vsa potrebna orodja v programu R, ki služijo za kakovostno izdelavo projekta za izbrano temo. Pri tem se bomo osredotočili na analizo podatkov, jih zapisovali v tabelo, risali podatkom primerne grafe, zemljevide, analizirali in interpretirali dobljene rešitve oziroma ugotovitve.
 
 \section{Obdelava, uvoz in čiščenje podatkov}
-Uvozil sem tabelo \verb|število goveda| in pri tem dodal še urejenostno spremenljivko primerjava med letom 2013 in povprečjem (torej če je število goveda večje ali manjše). Dodal sem stolpec povprečje pri kateremu sem izračunal vse povprečne vrednosti ter stolpec povprečje EU (ki obsega 34 držav v Evropi). Pri slednjem sem podatke črpal iz tabele, ki je na spletni strani \verb|Eurostat|, seveda sem te povprečne vrednosti izračunal v Excelu. Tako pripravljeno tabelo (obsega 11 stolpcev in 69 vrstic) sem uvozil v program R, pri tem navedel še vse potrebne spremenljivke, imel pa sem težave z odpravljanjem znakov X v glavi tabele in pa znakov NA v tabeli.
-Uvozil sem tabelo \verb|število prašičev| iz datoteke \verb|stevilo-prasisev.csv|, ki sem jo našel na spletni strani \verb|SURS| in nato še tabelo v obliki \textit{.htm} datokeke \verb|stevilo.ovac|, ki sem jo tudi dobil na \verb|SURS-u|.
-S pomočjo funkcije barplot sem narisal šest grafov in sicer število goveda v treh različnih letih, število prašičev v treh različnih regijah in pri usakemu dodal še primerno legendo. Narisal sem še 3D tortni diagram ter vse skupaj shranil v dadoteke \verb|grafX.pdf|, kjer je X={1,2,...7}. Vse grafe si lahko ogledate nanaslednjih straneh.
+Uvozil sem tabelo \verb|stevilo.goveda|, ki vsebuje podatke za leta 2007-2013 razvrščene po kategoriji (vrste goveda) ter po regiji (Slovenija, Vzhodna Slovenija in Zahodna Slovenija) in pri tem dodal še urejenostno spremenljivko primerjava med letom 2013 in povprečjem (torej če je število goveda večje ali manjše). Dodal sem stolpec povprečje pri kateremu sem izračunal vse povprečne vrednosti, ter stolpec povprečje EU (obsega povprečje posameznega števila goveda 34-tih držav v Evropi). Pri slednjem sem podatke črpal iz tabele, ki je na spletni strani \verb|Eurostat|. Seveda sem te povprečne vrednosti izračunal v Excelu, saj ni podatkov za vse vrste goveda, tako da tudi stolpec povprečje EU ni popoln. Tako pripravljeno tabelo (obsega 12 stolpcev in 66 vrstic) sem uvozil v program R in pri tem navedel še vse potrebne spremenljivke. Stolpci \verb|povprečje|, \verb|povprečje EU| in \verb|leta 2007-2013| so številske, \verb|kategorija| in \verb|regije| imenske, \verb|primerjava 2013 in povprečja| pa urejenostna spremenljivka.
+Nato sem uvozil tabelo \verb|stevilo.prasicev| iz datoteke \verb|stevilo-prasisev.csv|, ki sem jo našel na spletni strani \verb|SURS| in nato še tabelo v obliki \textit{.htm} datokeke \verb|stevilo.ovac|, ki sem jo tudi dobil na \verb|SURS-u|. Obe tabeli vsebujeta stolpce: \verb|regija| in \verb|kategorija|  (imenske spremenljivke), ter \verb|leta 2007-2013| (številske spremenljivke).
+\newline
+S pomočjo funkcije \verb|barplot| sem narisal sedem grafov. Sklop, ki obsega šest grafov, prikazuje število goveda po kohezijskih regijah (Vzhodna in Zahodna Slovenija) v vseh letih (od 2007-20013). Tega sem shranil v en pdf dokument: \verb|graf.pdf|. Zaradi lažjega opazovanja primerjav med grafi sem za ta sklop grafov naredil posebno animacijo, tako da so vsi grafi vidni na eni strani. Prav zaradi te animacije pa so vsi grafi shranjeni v mapi \verb|porocilo|. Narisal sem še 3D tortni diagram, ki prikazuje število ovac v letu 2007 in ga shranil v datoteko \verb|graf3.pdf|. Pri vseh grafih sem dodal še ustrezno legendo. Prikazovanje podatkov z grafi si lahko ogledate na spodnjih straneh.
 
-
-\includegraphics[width=\textwidth]{../slike/graf1.pdf}
-
-Graf primerja število goveda v letu 2007 v Vzhodni in Zahodni Sloveniji.
-
-
-\includegraphics[width=\textwidth]{../slike/graf2.pdf}
-
-Graf primerja število goveda v letu 2008 v Vzhodni in Zahodni Sloveniji.
+\begin{center}
+\animategraphics[controls,loop, width=.7\linewidth]{1}{graf}{0}{7}\\
+\end{center}
+Grafi prikazujejo število goveda v Zahodni in Vzhodni Sloveniji v letih 2007-2013 in sicer po različnih kategorijah, pri čemer je izpuščeno skupno število goveda po omenjenih dveh kohezijskih regijah. Pa začnimo z interpretacijo posameznih grafov ter primerjavo med njimi. Pri vseh lahko vidimo, da je število goveda bistveno večje v Vzhodni kot v Zahodni Sloveniji. Razlogi za to so predvsem v pogojih za rejo živine: podnebje, površina-položnejši relief v Vzhodni Sloveniji, večje kmetije, možnosti za predelavo ustrezne krme itd.
+\newline
+Največje je število krav molznic, kar kaže na to da Slovenija daje prednost predelavi domačega mleka, torej ne predelavi kakršnih koli drugih izdelkov oz. mesa za hrano (to kaže tudi zelo nizko število mladega goveda namenjenega za zakol). Število krav molznic je skozi ta leta približno isto, razlikuje se odvisno od tega koliko jih v posameznem letu pogine zaradi kakšne bolezni in koliko jih prodajo v tuje države, ampak ne opazimo nobenega drastičnega upada ali narasti. Število goveda za zakol je naraščalo od leta 2008 do 2010, torej se je v teh dveh letih povečalo povpraševanje po domačem mesu telet, nato pa začelo padati.
+\newline
+Visoko je tudi število bikcov in teličk za nadaljno rejo, kar kaže na to, da kmetje skrbijo za potomstvo, tako vzdržujejo število celotnega goveda in s tem vzdržujejo tudi število domačih proizvodov povezanih z govedom. Tudi tu je število skozi leta približno isto in odvisno od povpraševanja in pogojev za rejo mladih teličk in bikcov.
+\newline
+Prav tako je visoko število bikov in volov. Ti so namenjeni za prodajo, za meso in za osemenjevanje, nekatere kmetije pa jih še vedno uporabljajo tudi za delo na polju in njivi. 
+\newline
+Rezultati selekcije med biki in voli pa so plemenski biki. Njihovo število je med kategorijami najnižje, logično, saj jih uporabljajo zgolj za osemenjevanje, a ti niso prav nič manj pomembni kot druge vrste. Njihovo število je skozi ta leta rastlo, ker si kmetje prizadevajo, da ne bi postali povpraševalci po tujem semenu plemenskih bikov in posledično bi bila cena le-tega višja. Za to skrbi predvsem osemenjevalni center Preska, ki deluje pod okriljem Kmetijsko gozdarskega zavoda Ljubljana. V bližnji prihodnosti načrtujejo posodobitev laboratorija za globoko zamrzovanje semena in obnovo hlevov za boljše počutje živali, torej lahko pričakujemo, da bo to število še rastlo oz. ostalo na ravni, ki ustreza povpraševanju.
+\newline
+Število goveda se skozi leta ne bistveno spreminja (odvisno je tudi od odločitve kmetov katero vrsto bodo redili), kar pove, da ni bilo nobene večje naravne katastrofe, bolezni med govedom, globok padec povpraševanja po domačih govrejih izdelkih itd. Stabilno število je seveda dobro in s tem lahko tudi napovemo, da bo število v prihodnjih letih ostalo približno enako, tako da nam ni za skrbet za domače proizvode, domačo hrano, vsaj kar se tiče goveda ne.
 
 \includegraphics[width=\textwidth]{../slike/graf3.pdf}
 
-Graf primerja število goveda v letu 2008 v Vzhodni in Zahodni Sloveniji.
-
-\includegraphics[width=\textwidth]{../slike/graf4.pdf}
-
-Graf prikazuje število prašičev v Sloveniji v letu 2007, pri čemer je število v tisočih.
-
-\includegraphics[width=\textwidth]{../slike/graf5.pdf}
-
-Graf prikazuje število prašičev v Zahodni Sloveniji v letu 2007, pri čemer je število v tisočih.
-
-\includegraphics[width=\textwidth]{../slike/graf6.pdf}
-
-Graf prikazuje število prašičev v Zahodni Sloveniji v letu 2007, pri čemer je število v tisočih.
-
-\includegraphics[width=\textwidth]{../slike/graf7.pdf}
-
-Tortni diagram prikazuje deleže števila ovac V Sloveniji.
+\noindent Tortni diagram prikazuje deleže števila ovac v Sloveniji v letu 2007. Vidimo lahko, da je največje število plemenskih ovac, ki so že jagnjile, to pomeni, da so že poskrbele za potomstvo. Te kmetom oz. oskrbnikom ovac dajejo kozje mleko in volno, torej je to najbolj "uporabna" vrsta ovac. Mladiči ovac (plemenske ovce, prvič pripuščene) pa se delijo na mlecne-te tudi dajejo mleko- in na druge. Velik delež je tudi mladih ovac in jagnjetov, saj so ti dve vrsti namenjeni predvsem v predelovalno industrijo, torej za hrano in druge produkte. Število ovnov je majhno, ker so ti namenjeni samo osemenjevanju, najmanjši delež pa je delež jalovih ovc-te uporabljajo samo za striženje. Posamezni deleži oz. število ovac v letu je odvisno od tega koliko je povpraševanja po ovčjih izdelkih, koliko jim bolezni prizanesejo in koliko jih pobijejo volkovi ter druge zveri (mladiče lahko vzame tudi lisica). Seveda je število odvisno tudi od pogojev za rejo in odločitve kmetov katero vrsto ovac bodo redili. Ovčjereja je tretja najbolj pogosta reja živine.
 
 
 \newpage
 \section{Analiza in vizualizacija podatkov}
-Uvozil sem zemljevid Slovenije po regijah, ter regije razdelil na tiste, ki spadajo v Zahodno in na tiste, ki spadajo v Vzhodno Slovenijo, saj mi tako narekujejo podatki. Nato sem narisal štiri zemljevide, kjer je prikazano skupno število goveda po Vzhodni in Zahodni Sloveniji v letih 2010-20013. Po jakosti barv zelene in modre se lahko vidi, da je to število največje v letu 2010, najmanjše pa v letu 2012. Dodal sem še oznake regij in pri tem spremenil nekatere nastavitve pri koordinatah, tako da je ime lažje berljivo. Funkcije preuredi nisem potreboval, saj sem potreboval takšen vrstni red kot je v tabeli in sem zato delal samo z indeksi. Na koncu sem ta zemljevid shranil še v datoteko \verb|slovenija.pdf|. Spodaj je omenjeni zemljevid.
+Uvozil sem zemljevid Slovenije po regijah, ter regije razdelil na tiste, ki spadajo v Zahodno in na tiste, ki spadajo v Vzhodno Slovenijo, saj mi tako narekujejo podatki. Nato sem narisal štiri zemljevide, kjer je prikazano skupno število goveda po Vzhodni in Zahodni Sloveniji v letih 2010-20013. Po jakosti barv zelene in modre se lahko vidi, da je to število največje v letu 2010, najmanjše pa v letu 2012. Dodal sem še oznake regij in pri tem spremenil nekatere nastavitve pri koordinatah in samih imenih, tako da je ime lažje berljivo. Na koncu sem zemljevid shranil v datoteko \verb|slovenija.pdf| in tega si lahko ogledate spodaj.
 
 \makebox[\textwidth][c]{
 \includegraphics[width=1.2\textwidth]{../slike/slovenija.pdf}
 }
-Zemljevidi prikazujejo število goveda po Vzhodni in Zahodni Sloveniji v letih 2010-2013.
 \newline
 \newline
-\noindent Nato sem uvozil še eno tabelo iz strani \verb|Eurostat|, in sicer tabelo \verb|stevilo.govedaEU|, ki prikazuje skupno število goveda po različnih državah Evropske Unije v letih 2007-2013. To tabelo sem potreboval, ker sem želel uvoziti še zemljevid Evrope in nanj prikazati podatke, katere zajema moja tematika. Na zemljevidu, ki se nahaja spodaj sem prikazal skupno število goveda v letu 2013. Pri tem sem dodal še imena držav, popravil imena in  koordinate imen, izpustil Makedonijo in Luksemburg (ker sta bili njuni imeni na zemljevidu neberljivi), ter Bosno in Hercegovino skrajsal na BIH, Nizozemsko na NLD, Makedonijo na MKD, Dansko na DNK in Slovenijo na SLO. Tako urejen zemljevid sem shranil v datoteko \verb|evropa.pdf|.
-
+Zemljevidi prikazujejo število goveda po Vzhodni in Zahodni Sloveniji v letih 2010-2013, pri čemer se odtenki modre in zelene barve nanašajo na zemljevid z največjim številom goveda, torej na leto 2010. Ta je pobarvan z odtenkom 1, drugi pa temu primerni (svetlejši). Regije, ki so pobarvane z modro spadajo v Zahodno Slovenijo, tiste z zeleno pa v Vzhodno Slovenijo. O številu goveda v teh štirih letih se da razbrati iz zemljevidov-odtenki barv prikazujejo povezave med številom goveda v posameznih letih (če je barva svetlejša je število manjše, če pa je temnejša je število goveda večje).
+Namen teh zemljevidov je prikaz regij, število goveda v posameznih letih glede na kohezijski regiji, ter ponazoritev še enega izmed načinov za prikazovanje podatkov iz tabel. Kar se tiče podrobnejše analize za mojo temo pa ta prikaz ni tako dober kot grafi zgoraj.
+\newline
+\newline
+\noindent Nato sem uvozil še eno tabelo iz strani \verb|Eurostat|, in sicer tabelo \verb|stevilo.govedaEU|, ki prikazuje skupno število goveda po različnih državah Evrope v letih 2007-2013 in odstarnil nepotrebne stolpce. Tako urejena tabela ima 3 stolpce: \verb|leto| in \verb|število.goveda| (podatki v slednjem stolpcu so v tisočih) sta številski, \verb|država| pa imenska spremenljivka. To tabelo sem potreboval, ker sem želel uvoziti še zemljevid Evrope in nanj prikazati podatke, katere zajema moja tematika. Iz tabele sem vzel samo podatke za leto 2013 in jih shranil v tabelo \verb|stevilo.goveda.2013|.
+\newline Na zemljevidu, ki se nahaja spodaj sem prikazal skupno število goveda v letu 2013. Pri tem sem dodal še imena držav, popravil imena in  koordinate imen, izpustil Makedonijo in Luksemburg (ker sta bili njuni imeni na zemljevidu neberljivi), ter Bosno in Hercegovino skrajsal na BIH, Nizozemsko na NLD, Makedonijo na MKD, Dansko na DNK in Slovenijo na SLO (to so uradne oznake teh držav). Zaradi lažjega prikazovanja sem tudi napis Portugalska zasukal za 90 stopinj, tako da se prilega območju te države. Tako urejen zemljevid sem shranil v datoteko \verb|evropa.pdf|.
 
 \makebox[\textwidth][c]{
 \includegraphics[width=1.2\textwidth]{../slike/evropa.pdf}
 }
-Zemljevid prikazuje skupno število goveda po državah EU v letu 2013.
 
-% \newpage
-% \section{Napredna analiza podatkov}
+\noindent Zemljevid prikazuje skupno število goveda v 34-tih državah Evrope v letu 2013. To število je največje v največjih in najbolj razvitih državah Evrope: Francija, Velika Britanija, Nemčija in Turčija itd. Razlogov je veliko. Naj omenim samo nekatere: ugodno podnebje za rejo živine in za pridelovanje ustrezne krme, možnosti za velike kmetije na katerih se ukvarjajo z rejo goveda, kar je odvisno tudi od površine (torej velike ravnine, veliko travnatih površin...), življenjski standard kmetov v posameznih državah in državne subvencije namenjene v kmetijstvo oz. specifično v govedorejo, povpraševanje po kravjem mleku, mlečnih izdelkih in drugih produktih, kar je odvisno tudi od števila prebivalcev v državi, povpraševanje na tujih trgih itd. Ta zemljevid pa ne predstavlja deležev (torej število goveda na prebivalstvo), zato je tudi logično, da so te številke največje prav v teh velikih državah Evrope in manjše v drugih. Lepo pa prikazuje zavzetost posamezne države za govedorejo oz. možnosti za govedorejo. Tukaj imam v mislih prav Irsko, ki je po velikosti in številu prebivalstva veliko manjša kot naprimer Španija in Italija, a vzrejajo približno isto število goveda. To je predvsem odraz boljših pogojev za govedorejo (podnebje, veliko travnatih površin...). Manjše število goveda (tudi slabše pogoje) in približno isto pa imajo vse države Balkanskega polotoka in Baltske države.
+\newline
+
+\noindent Ker pa sem želel prikazati tudi število goveda na prebivalca v posameznih državah (deleže), tako da res vidimo koliko katera država vlaga v govedorejo in pa razlike med državami sem narisal še zemljevid, ki vse to prikazuje in ga lahko pogledate spodaj. Zato sem tabelo \verb|stevilo.goveda.2013| dopolnil s stolpcem \verb|število.prebivalcev|, ki sem ga uvozil iz strani \verb|Eurostat| in ga shranil v tabelo \verb|stevilo.preb|, ter s stolpcem \verb|delez|, katerega sem izračunal v programu Rstudio (torej stevilo goveda/stevilo prebivalcev). Tako urejena tabela sedaj obsega 5 stolpcev: tri od prej in stolpca \verb|število.prebivalcev| in \verb|delez|, ki sta številski spremenljivki. Za državo Bosna in Hercegovina ni podatka o številu prebivalcev, zato tega deleža ni na zemljevidu. Ta je sestavljen, glede imen in koordinat, isto kot prej.
+\newline
+Zemljevid prikazuje število goveda na prebivalca v 33-tih državah v Evropi v letu 2013. Pri večini držav je ta številka pod 1, kar pomeni, da je število prebivalcev v posamezni državi večje kot število goveda in med temi državami ni velike razlike (najmanjše razmerje med govedom in prebivalstvom ima malta z 0.036, največje pa Luksemburg z 0.37). Daleč največje razmerje pa ima Irska (1.37), ki sem jo že prej omenil in naštel vse razloge za njeno bujno govedorejo. Za vse ostale države pa velja, da se nekako ravnajo po številu svojega prebivalstva in po potrebah oz. povpraševanju le-teh, nekatere  izvažajo produkte (če je v tej državi ponudba večja kot povpraševanje in vidijo, da imajo možnosti za to), druge uvažajo (če povpraševanju prebivalstva ne morejo ustreči samo s svojo govedorejo). Vse pa imajo stabilno razmerje, iščejo napredke in izboljšave na tem področju, ter se prilagajajo trgu govejih in mlečnih izdelkov.
+
+\makebox[\textwidth][c]{
+\includegraphics[width=1.2\textwidth]{../slike/evropa1.pdf}
+}
 
 
+\section{Napredna analiza podatkov}
+%http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=demo_gind&lang=en
+
+%http://drgan.net/blog/wp-content/uploads/2010/08/animate.pdf
+%http://www.r-bloggers.com/using-r-sweave-and-latex-to-integrate-animations-into-pdfs/
 \end{document}
