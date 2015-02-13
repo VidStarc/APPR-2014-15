@@ -104,11 +104,20 @@ stevilo.goveda.2013<-data.frame(stevilo.goveda.2013,delez)
 #6.TABELA
 uvozi6<-function(){
   return(read.csv2("podatki/govedo-skupaj.csv",header = TRUE,  skip=2 ,nrows=23, as.is = TRUE, 
-                   na.strings = ":",col.names=c("leto","število.goveda"),fileEncoding = "Windows-1250"))
+                   na.strings = ":",col.names=c("leto","stevilo.goveda"),fileEncoding = "Windows-1250"))
 }
 #zapišimo podatke v razpredelnico stevilo
 cat("Uvažam podatke o skupnem stevilu goveda...razpredelnica stevilo\n\n")
 stevilo<-uvozi6()
+
+#7.TABELA
+uvozi7<-function(){
+  return(read.csv2("podatki/ovce-skupaj.csv",header = TRUE,  skip=1 ,nrows=22, as.is = TRUE, 
+                   na.strings = ":",col.names=c("leto","stevilo.ovac"),fileEncoding = "Windows-1250"))
+}
+#zapišimo podatke v razpredelnico stevilo
+cat("Uvažam podatke o skupnem stevilu ovac...razpredelnica ovce\n\n")
+ovce<-uvozi7()
 
 # Če bi imeli več funkcij za uvoz in nekaterih npr. še ne bi
 # potrebovali v 3. fazi, bi bilo smiselno funkcije dati v svojo
