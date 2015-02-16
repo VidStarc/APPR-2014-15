@@ -19,7 +19,7 @@ loess<-loess(govedo~leta)
 
 
 #napoved za skupno število goveda do leta 2035 po različnih modelih
-pdf("porocilo/napoved.pdf")
+pdf("slike/napoved.pdf")
 plot(leta,govedo,xlim=c(1991,2025),ylim=c(430,530),
      xlab="Leto",ylab="Skupno število goveda (*1000)",
      main="Napoved za skupno število goveda do leta 2025")
@@ -28,6 +28,7 @@ curve(napoved(x, lin), add=TRUE,col="red")
 curve(napoved(x, kvad), add=TRUE, col="blue")
 #legenda
 legend("topright", c("Linerana metoda", "Kvadratna metoda"),lty=c(1,1), col = c("red","blue"))
+dev.off()
 
 
 Leta<-ovce$leto
@@ -48,6 +49,7 @@ loess<-loess(ov~Leta)
 # ostanki<-sapply(list(lin, kvad, loess), function(x) sum(x$residuals^2))
 
 #napoved za skupno število ovac do leta 2035 po različnih modelih
+pdf("slike/napoved1.pdf")
 plot(Leta,ov,xlim=c(1991,2025),ylim=c(22,140),
      xlab="Leto",ylab="Skupno število ovac (*1000)",
      main="Napoved za skupno število ovac do leta 2025")
